@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package demo;
+import "google/api/annotations.proto";
+option go_package="proto/";
+
+message RestaurantLikeStatRequest {
+  repeated int32 resIds = 1;
+}
+message RestaurantLikeStatResponse {
+  map<int32,int32> result = 1;
+}
+service RestaurantLikeService {
+  rpc GetRestaurantLikeStat(RestaurantLikeStatRequest) returns  (RestaurantLikeStatResponse) {
+    option (google.api.http) = {
+      get: "/v1/restaurant-like"
+    };
+  };
+}
